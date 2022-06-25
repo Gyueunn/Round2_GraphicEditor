@@ -9,19 +9,19 @@ public class ToolChange {
         	String input = e.getActionCommand();
 	       	if(input.equals("Line")) {
 	       		GraphicEditor.tool = input;
-	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
 	       	}
 	       	else if(input.equals("Pen")) {
 	       		GraphicEditor.tool = input;
-	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
 	       	}
         	else if(input.equals("☐")) {
         		GraphicEditor.tool = input;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
         	}
         	else if(input.equals("◯")) {
         		GraphicEditor.tool = input;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
         	}
         }
 	};

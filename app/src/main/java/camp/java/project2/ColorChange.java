@@ -9,19 +9,19 @@ public class ColorChange {
         	String input = e.getActionCommand();
 	       	if(input.equals("BLACK")) {
 	       		GraphicEditor.color = input;
-	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
 	       	}
 	       	else if(input.equals("RED")) {
 	       		GraphicEditor.color = input;
-	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+	       		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
 	       	}
         	else if(input.equals("BLUE")) {
         		GraphicEditor.color = input;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
         	}
         	else if(input.equals("GREEN")) {
         		GraphicEditor.color = input;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
         	}
         }
 	};

@@ -10,8 +10,8 @@ public class ResetChange {
         	if(input.equals("Reset")) {
         		GraphicEditor.tool = "Line";
         		GraphicEditor.color = "BLACK";
-        		GraphicEditor.penWidth = 8.0;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth));
+        		GraphicEditor.stroke = 5;
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
         	}
         }
     };

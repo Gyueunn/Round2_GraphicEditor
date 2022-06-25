@@ -40,8 +40,8 @@ public class ButtonPanel extends JFrame {
 		outputPanel.setPreferredSize(new Dimension(150, 40));
 		drawPanel.setPreferredSize(new Dimension(130, 40));
 		eraserPanel.setPreferredSize(new Dimension(130, 40));
-		widthPanel.setPreferredSize(new Dimension(130, 40));
-		colorPanel.setPreferredSize(new Dimension(130, 40));
+		widthPanel.setPreferredSize(new Dimension(80, 40));
+		colorPanel.setPreferredSize(new Dimension(150, 40));
 		buttonPanel.add(outputPanel);
 		buttonPanel.add(drawPanel);
 		buttonPanel.add(widthPanel);
@@ -55,7 +55,7 @@ public class ButtonPanel extends JFrame {
 	void setOutputPanel() {
 		ResetChange r = new ResetChange();
 		outputPanel.setLayout(new GridLayout(2, 1));
-		outputAll = new JLabel(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.penWidth), JLabel.CENTER);
+		outputAll = new JLabel(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke), JLabel.CENTER);
 		outputAll.setFont(new Font("Arial", Font.PLAIN, 15));
 		outputSize.setBounds(0, 0, 270, 70);
 		outputPanel.add(outputAll, BorderLayout.CENTER);
