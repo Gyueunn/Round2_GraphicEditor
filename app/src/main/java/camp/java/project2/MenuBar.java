@@ -11,20 +11,27 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-public class MenuBar extends JFrame {
+public class MenuBar extends JMenuBar {
 	public MenuBar() {
-		JMenuBar mb = new JMenuBar();
-
-		JMenu propertyMenu = new JMenu("굵기");
-		propertyMenu.add(new JMenuItem("+"));
-		propertyMenu.add(new JMenuItem("-"));
-		
-		JMenu addMenu = new JMenu("색상");
-		addMenu.add(new JMenuItem("Red"));
-		addMenu.add(new JMenuItem("Blue"));
-		
-		mb.add(propertyMenu);
-		mb.add(addMenu);
-		GraphicEditor.frame.setJMenuBar(mb);
+		chageTool();
+		GraphicEditor.frame.setJMenuBar(this);
+	}
+	
+	void chageTool() {
+		ToolChange t = new ToolChange();
+		JMenu propertyMenu = new JMenu("Tool");
+		JMenuItem line = new JMenuItem("Line");
+		JMenuItem pen = new JMenuItem("Pen");
+		JMenuItem rec = new JMenuItem("Rec");
+		JMenuItem cir = new JMenuItem("Cir");
+		propertyMenu.add(line);
+		propertyMenu.add(pen);
+		propertyMenu.add(rec);
+		propertyMenu.add(cir);
+		this.add(propertyMenu);
+		line.addActionListener(t.listener);
+		pen.addActionListener(t.listener);
+		rec.addActionListener(t.listener);
+		cir.addActionListener(t.listener);
 	}
 }

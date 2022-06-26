@@ -24,39 +24,31 @@ import javax.swing.JRadioButton;
 public class ButtonPanel extends JFrame {
 	JPanel buttonPanel = new JPanel(); // 기준
 	JPanel outputPanel = new JPanel();
-	JPanel drawPanel = new JPanel(); // 도형 
 	JPanel eraserPanel = new JPanel(); //지우기 
 	JPanel widthPanel = new JPanel(); //굵기 
 	JPanel colorPanel = new JPanel(); //색상 
 	static JLabel outputAll = new JLabel();
 	static JLabel outputSize = new JLabel();
 	
+	static JPanel colorCheck = new JPanel();//색상 확인용 
+	
 	public ButtonPanel() {
 		setOutputPanel();
-		setDrawPanel();
 		setEraserPanel();
 		setWidthPanel();
 		setColorPanel();
-		outputPanel.setPreferredSize(new Dimension(150, 40));
-		drawPanel.setPreferredSize(new Dimension(130, 40));
-		eraserPanel.setPreferredSize(new Dimension(130, 40));
-		widthPanel.setPreferredSize(new Dimension(80, 40));
-		colorPanel.setPreferredSize(new Dimension(150, 40));
 		buttonPanel.add(outputPanel);
-		buttonPanel.add(drawPanel);
-		buttonPanel.add(widthPanel);
 		buttonPanel.add(colorPanel);
+		buttonPanel.add(widthPanel);
 		buttonPanel.add(eraserPanel);
-		buttonPanel.setBackground(Color.LIGHT_GRAY);
 		GraphicEditor.frame.add(buttonPanel, BorderLayout.NORTH);
-		//System.out.println(buttonPanel.getWidth());
 		
 	}
 	void setOutputPanel() {
 		ResetChange r = new ResetChange();
-		outputPanel.setLayout(new GridLayout(2, 1));
-		outputAll = new JLabel(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke), JLabel.CENTER);
-		outputAll.setFont(new Font("Arial", Font.PLAIN, 15));
+		outputPanel.setLayout(new GridLayout(1, 2));
+		outputAll = new JLabel(GraphicEditor.tool + " / " + Double.toString(GraphicEditor.stroke), JLabel.CENTER);
+		outputAll.setFont(new Font("Arial", Font.PLAIN, 17));
 		outputSize.setBounds(0, 0, 270, 70);
 		outputPanel.add(outputAll, BorderLayout.CENTER);
 		String resetButton = "Reset";
@@ -65,33 +57,23 @@ public class ButtonPanel extends JFrame {
 		outputPanel.add(rButton);
 		rButton.addActionListener(r.listener);
 	}
-	
-	void setDrawPanel() {
-		ToolChange t = new ToolChange();
-		drawPanel.setLayout(new GridLayout(2, 2));
-		String[] drawButton = {"Line", "Pen", "☐", "◯"};
-		JButton[]drawJButton = new JButton[drawButton.length];
-		for(int i=0; i<drawButton.length; i++) {
-			drawJButton[i] = new  JButton(drawButton[i]);
-			drawPanel.add(drawJButton[i]);
-			drawJButton[i].addActionListener(t.listener);
-		}
-	}
-	
+		
 	void setEraserPanel() {
-		eraserPanel.setLayout(new GridLayout(2, 2));
-		String[] eraserButton = {"AC", "CLEAR", "<=", "=>"};
+		Clear c = new Clear();
+		//eraserPanel.setLayout(new GridLayout(1, 2));
+		String[] eraserButton = {"All", "Object", "Eraser","<=", "=>"};
 		JButton[] eButton = new JButton[eraserButton.length];
 		for(int i=0; i<eraserButton.length; i++) {
 			eButton[i] = new JButton(eraserButton[i]);
 			eraserPanel.add(eButton[i]);
+			eButton[i].addActionListener(c.listener);
 		}
 	}
 	
 	void setWidthPanel() {
 		WidthChange w = new WidthChange();
-		widthPanel.setLayout(new GridLayout(2, 2));
-		String[] widthButton = {"+", "-"};
+		widthPanel.setLayout(new GridLayout(1, 4));
+		String[] widthButton = {"-", "+"};
 		JButton[] wButton = new JButton[widthButton.length];
 		for(int i=0; i<widthButton.length; i++) {
 			wButton[i] = new JButton(widthButton[i]);
@@ -102,15 +84,15 @@ public class ButtonPanel extends JFrame {
 	
 	void setColorPanel() {
 		ColorChange c = new ColorChange();
-		colorPanel.setLayout(new GridLayout(2, 2));
-		String[] colorButton = {"BLACK", "RED", "BLUE", "GREEN"};	
-		 JButton[] check = new JButton[colorButton.length];
-		//colorPanel.setBackground(Color.LIGHT_GRAY);
-		for(int i=0; i<colorButton.length; i++) {
-			check [i] = new  JButton(colorButton[i]);
-			colorPanel.add(check [i]);
-			check [i].addActionListener(c.listener);
-		}
+		colorPanel.setLayout(new GridLayout(1,0));
+		
+		String colorButton = "Color";	
+		JButton check = new JButton();
+		check = new  JButton(colorButton);
+		colorCheck.setBackground(GraphicEditor.color);
+		colorPanel.add(check);
+		colorPanel.add(colorCheck);
+		check.addActionListener(c.listener);
 	}
 }
 

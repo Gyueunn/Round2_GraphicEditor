@@ -8,12 +8,14 @@ public class WidthChange {
         public void actionPerformed(ActionEvent e) {
         	String input = e.getActionCommand();
         	if(input.equals("-")) {
-        		GraphicEditor.stroke -= 1;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
+        		if(GraphicEditor.stroke > 1) {
+        			GraphicEditor.stroke -= 1;
+            		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + Double.toString(GraphicEditor.stroke));
+        		}
         	}
         	else if(input.equals("+")) {
         		GraphicEditor.stroke += 1;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + Double.toString(GraphicEditor.stroke));
 			}
         }
     };

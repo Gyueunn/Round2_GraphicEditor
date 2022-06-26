@@ -1,5 +1,6 @@
 package camp.java.project2;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,9 +10,10 @@ public class ResetChange {
         	String input = e.getActionCommand();
         	if(input.equals("Reset")) {
         		GraphicEditor.tool = "Line";
-        		GraphicEditor.color = "BLACK";
+        		GraphicEditor.color = Color.BLACK;
+        	    ButtonPanel.colorCheck.setBackground(GraphicEditor.color);
         		GraphicEditor.stroke = 5;
-        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + GraphicEditor.color + " / " + Double.toString(GraphicEditor.stroke));
+        		ButtonPanel.outputAll.setText(GraphicEditor.tool + " / " + Double.toString(GraphicEditor.stroke));
         	}
         }
     };
