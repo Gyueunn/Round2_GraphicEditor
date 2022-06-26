@@ -1,6 +1,7 @@
 package camp.java.project2;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,23 +10,19 @@ import java.util.Stack;
 import camp.java.project2.UsingTool.MyShape;
 
 public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 지우기, redo(이전 그린 것만 지우기), undo(돌린 값 받아오기) 
-	//public static ArrayList <MyShape> stackList = new ArrayList<MyShape>(); //을
-	
-	
-	
+	static ArrayList <MyShape> allClearList = new ArrayList<MyShape>();
 	
 	static ActionListener listener = new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) { 
         	String input = e.getActionCommand();
         	if(input.equals("All")) {
-        		System.out.println(UsingTool.shapeArrayList);//비워지기 전 
         		UsingTool.startP = null;
-        		UsingTool.endP = null;
-        		UsingTool.redoStack.push(UsingTool.shapeArrayList.get(UsingTool.shapeArrayList.size()-1));
+        		for(int i=0; i<UsingTool.shapeArrayList.size(); i++) {
+        			allClearList.add(UsingTool.shapeArrayList.get(i));
+   	         	}
         		UsingTool.shapeArrayList.clear();
         		GraphicEditor.myPanel.repaint();
-        		//UsingTool.redoStack.clear(); //stack을 모두 초기화 
-        		System.out.println(UsingTool.shapeArrayList);//비우고 난 뒤 
+//        		UsingTool.redoStack.clear(); //stack을 모두 초기화 
         	}
         	
         	else if(input.equals("Object")) {
@@ -39,12 +36,18 @@ public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 �
 			}
         	
         	else if(input.equals("<=")) {
-        		if(UsingTool.shapeArrayList.size() > 0) {
+        		if(allClearList.size() != 0) {
+        			for(int i=0; i<allClearList.size(); i++) {
+        				UsingTool.shapeArrayList.add(allClearList.get(i));
+       	         	}
+        			allClearList.clear();
+        			GraphicEditor.myPanel.repaint();
+        		}
+        		else if(UsingTool.shapeArrayList.size() > 0) {
         			UsingTool.redoStack.push(UsingTool.shapeArrayList.get(UsingTool.shapeArrayList.size()-1));
             		UsingTool.shapeArrayList.remove(UsingTool.shapeArrayList.size()-1);
             		UsingTool.startP = null;
             		GraphicEditor.myPanel.repaint();
-            		System.out.println("push : " + UsingTool.redoStack);
         		}
 			}
         	
@@ -52,9 +55,6 @@ public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 �
         		if(!UsingTool.redoStack.empty()) {
         			UsingTool.shapeArrayList.add(UsingTool.redoStack.pop());
         			UsingTool.MyShape undo = UsingTool.shapeArrayList.get(UsingTool.shapeArrayList.size()-1);
-//            		UsingTool.startP = undo.sp;
-//            		UsingTool.endP = undo.ep;
-            		System.out.println("pop : " + UsingTool.redoStack);
             		GraphicEditor.myPanel.repaint();
         		}
 			}

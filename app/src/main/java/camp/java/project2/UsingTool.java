@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 public class UsingTool extends JPanel {
 	static Point startP = null;
 	static Point endP = null;
-
-	//public static Stack<MyShape> redoStack = new Stack<>();
 	public static Stack<MyShape> redoStack = new Stack<>();
 	public static ArrayList <MyShape> shapeArrayList = new ArrayList<MyShape>();
 	public static ArrayList <Point> pointArrayList; //드래
@@ -27,7 +25,8 @@ public class UsingTool extends JPanel {
 		MyMouseListener ml = new MyMouseListener();
 		this.addMouseListener(ml); 
 		this.addMouseMotionListener(ml);
-		this.setBackground(Color.WHITE);
+//		this.setBackground(GraphicEditor.Background);
+		this.setBackground(GraphicEditor.Background);
 		GraphicEditor.myPanel.add(this);
 	}	
 	
@@ -128,8 +127,6 @@ public class UsingTool extends JPanel {
 				MyShape currentShape = new MyShape(GraphicEditor.tool, GraphicEditor.color, GraphicEditor.stroke, startP, endP, pointArrayList);
 				shapeArrayList.add(currentShape);
 			}
-			
-			//new MyShape(pointArrayList);
 			else if (GraphicEditor.tool.equals("Line") || GraphicEditor.tool.equals("☐") || GraphicEditor.tool.equals("◯")){
 				MyShape currentShape = new MyShape(GraphicEditor.tool, GraphicEditor.color, GraphicEditor.stroke, startP, endP);
 				shapeArrayList.add(currentShape);

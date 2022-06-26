@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class GraphicEditor extends JFrame {
 	public static JFrame frame = new JFrame();
 	public static JPanel myPanel = new JPanel();
-	
+	public static Color Background = Color.WHITE;
 	public static String tool = "Line";
 	public static Color color = Color.BLACK;
 	public static int stroke = 5;
@@ -30,17 +30,14 @@ public class GraphicEditor extends JFrame {
 		frame.setTitle("GraphicEditor");
 		frame.setSize(1000, 700);
 		frame.setLocationRelativeTo(null);
-		//frame.setLayout(new GridLayout(2,1));
 		new MenuBar();
 		new ButtonPanel();
-		myPanel.setBackground(Color.MAGENTA);
-		
+		//myPanel.setBackground(Color.MAGENTA);
 		myPanel.setBounds(0, 0, 1280, 90);
 		myPanel.setOpaque(true);
 		myPanel.setLayout(new GridLayout(1,0));
 		new UsingTool();
 		frame.add(myPanel);
-		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

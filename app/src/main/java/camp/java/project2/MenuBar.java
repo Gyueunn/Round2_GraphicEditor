@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class MenuBar extends JMenuBar {
 	public MenuBar() {
 		chageTool();
+		changeBackground();
 		GraphicEditor.frame.setJMenuBar(this);
 	}
 	
@@ -33,5 +34,19 @@ public class MenuBar extends JMenuBar {
 		pen.addActionListener(t.listener);
 		rec.addActionListener(t.listener);
 		cir.addActionListener(t.listener);
+	}
+	void changeBackground() {
+		BackgroundChange b = new BackgroundChange();
+		JMenu propertyMenu = new JMenu("Background");
+		JMenuItem white = new JMenuItem("White");
+		JMenuItem black = new JMenuItem("Black");
+		JMenuItem green = new JMenuItem("Green");
+		propertyMenu.add(white);
+		propertyMenu.add(black);
+		propertyMenu.add(green);
+		this.add(propertyMenu);
+		white.addActionListener(b.listener);
+		black.addActionListener(b.listener);
+		green.addActionListener(b.listener);
 	}
 }
