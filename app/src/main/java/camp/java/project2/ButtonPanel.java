@@ -42,7 +42,6 @@ public class ButtonPanel extends JFrame {
 		buttonPanel.add(widthPanel);
 		buttonPanel.add(eraserPanel);
 		GraphicEditor.frame.add(buttonPanel, BorderLayout.NORTH);
-		
 	}
 	void setOutputPanel() {
 		ResetChange r = new ResetChange();
@@ -61,7 +60,7 @@ public class ButtonPanel extends JFrame {
 	void setEraserPanel() {
 		Clear c = new Clear();
 		//eraserPanel.setLayout(new GridLayout(1, 2));
-		String[] eraserButton = {"All", "Object", "Eraser","<=", "=>"};
+		String[] eraserButton = {"All", "Eraser","<=", "=>"};
 		JButton[] eButton = new JButton[eraserButton.length];
 		for(int i=0; i<eraserButton.length; i++) {
 			eButton[i] = new JButton(eraserButton[i]);

@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -15,22 +16,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class UsingTool extends JPanel {
+	public static JPanel panel = new JPanel();
+	
 	static Point startP = null;
 	static Point endP = null;
-	public static Stack<MyShape> redoStack = new Stack<>();
+	
+	public static Stack <MyShape> redoStack = new Stack<>();
 	public static ArrayList <MyShape> shapeArrayList = new ArrayList<MyShape>();
-	public static ArrayList <Point> pointArrayList; //드래
+	public static ArrayList <Point> pointArrayList;
+	public static BufferedImage image;
 	
 	public UsingTool() {
+		panel = this;
 		MyMouseListener ml = new MyMouseListener();
-		this.addMouseListener(ml); 
-		this.addMouseMotionListener(ml);
-//		this.setBackground(GraphicEditor.Background);
-		this.setBackground(GraphicEditor.Background);
-		GraphicEditor.myPanel.add(this);
+		panel.addMouseListener(ml); 
+		panel.addMouseMotionListener(ml);
+		panel.setBackground(GraphicEditor.Background);
+		GraphicEditor.myPanel.add(panel);
 	}	
 	
-	static class MyShape {
+	class MyShape {
 		 String shapeTool;
 	     Color shapeColor;
 	     int shapeStroke;
@@ -55,23 +60,26 @@ public class UsingTool extends JPanel {
 	         this.ep = ep;
 	         this.shapePoint = null;
 	     }
-	     
-//	     public MyShape(ArrayList <Point> shapePoint) {
-//	    	 this.shapePoint = shapePoint;
-//	     }
 	}
 	
 	public void paintComponent(Graphics graphic){
 		Graphics2D g = (Graphics2D) graphic;
 		super.paintComponent(graphic);
 		
+		if(FileChange.isLoaded == true) {
+			graphic.drawImage(FileChange.loadedImage, 0, 0, this);
+		}
+		
 		if(shapeArrayList.size() != 0){
+			if(FileChange.isLoaded == true) {
+				graphic.drawImage(FileChange.loadedImage, 0, 0, this);
+			}
 			for(MyShape cshape: shapeArrayList){
 				g.setStroke(new BasicStroke(cshape.shapeStroke,BasicStroke.CAP_ROUND,0));
 				g.setColor(cshape.shapeColor);
 				if(cshape.shapeTool.equals("Line")) g.drawLine(cshape.sp.x, cshape.sp.y, cshape.ep.x, cshape.ep.y);//그리다
-				else if(cshape.shapeTool.equals("☐")) g.drawRect(Math.min(cshape.sp.x, cshape.ep.x), Math.min(cshape.sp.y, cshape.ep.y),Math.abs(cshape.ep.x - cshape.sp.x),Math.abs(cshape.ep.y - cshape.sp.y));
-				else if(cshape.shapeTool.equals("◯")) g.drawOval(Math.min(cshape.sp.x, cshape.ep.x), Math.min(cshape.sp.y, cshape.ep.y),Math.abs(cshape.ep.x - cshape.sp.x),Math.abs(cshape.ep.y - cshape.sp.y));
+				else if(cshape.shapeTool.equals("☐")) g.drawRect(Math.min(cshape.sp.x, cshape.ep.x), Math.min(cshape.sp.y, cshape.ep.y), Math.abs(cshape.ep.x - cshape.sp.x), Math.abs(cshape.ep.y - cshape.sp.y));
+				else if(cshape.shapeTool.equals("◯")) g.drawOval(Math.min(cshape.sp.x, cshape.ep.x), Math.min(cshape.sp.y, cshape.ep.y), Math.abs(cshape.ep.x - cshape.sp.x), Math.abs(cshape.ep.y - cshape.sp.y));
 				else if(cshape.shapeTool.equals("Pen")) {
 					for(int i =0; i<cshape.shapePoint.size()-1; i++) {
 						g.drawLine(cshape.shapePoint.get(i).x, cshape.shapePoint.get(i).y, cshape.shapePoint.get(i+1).x, cshape.shapePoint.get(i+1).y);
@@ -90,8 +98,8 @@ public class UsingTool extends JPanel {
 			g.setStroke(new BasicStroke(GraphicEditor.stroke,BasicStroke.CAP_ROUND,0));
 			g.setColor(GraphicEditor.color);
 			if(GraphicEditor.tool.equals("Line")) g.drawLine(startP.x, startP.y, endP.x, endP.y);	
-			else if(GraphicEditor.tool.equals("☐")) g.drawRect(Math.min(startP.x, endP.x), Math.min(startP.y, endP.y),Math.abs(endP.x - startP.x),Math.abs(endP.y - startP.y));
-			else if(GraphicEditor.tool.equals("◯")) g.drawOval(Math.min(startP.x, endP.x), Math.min(startP.y, endP.y),Math.abs(endP.x - startP.x),Math.abs(endP.y - startP.y));
+			else if(GraphicEditor.tool.equals("☐")) g.drawRect(Math.min(startP.x, endP.x), Math.min(startP.y, endP.y), Math.abs(endP.x - startP.x), Math.abs(endP.y - startP.y));
+			else if(GraphicEditor.tool.equals("◯")) g.drawOval(Math.min(startP.x, endP.x), Math.min(startP.y, endP.y), Math.abs(endP.x - startP.x), Math.abs(endP.y - startP.y));
 			else if(GraphicEditor.tool.equals("Pen")) {
 				for(int i =0; i<pointArrayList.size()-1; i++) {
 					g.drawLine(pointArrayList.get(i).x, pointArrayList.get(i).y, pointArrayList.get(i+1).x, pointArrayList.get(i+1).y);
@@ -99,7 +107,7 @@ public class UsingTool extends JPanel {
 			}
 			else if(GraphicEditor.tool.equals("Eraser")) {
 				for(int i =0; i<pointArrayList.size()-1; i++) {
-					g.setColor(Color.WHITE);
+					g.setColor(GraphicEditor.Background);
 					g.drawLine(pointArrayList.get(i).x, pointArrayList.get(i).y, pointArrayList.get(i+1).x, pointArrayList.get(i+1).y);
 				}
 			}
@@ -112,11 +120,10 @@ public class UsingTool extends JPanel {
 			pointArrayList =  new ArrayList<Point>();
 			pointArrayList.add(startP);
 		}
-		
 		public void mouseDragged(MouseEvent e){
 			endP = e.getPoint();
 			pointArrayList.add(endP);
-			repaint();
+			panel.repaint();
 		}
 		
 		public void mouseReleased(MouseEvent e){
@@ -132,16 +139,13 @@ public class UsingTool extends JPanel {
 				shapeArrayList.add(currentShape);
 			}
 			redoStack.clear();//화면이 눌리면 이전의 redo를 삭제 
-			repaint(); 
+			Clear.allClearList.clear();
+			panel.repaint(); 
 		}
 		
 		public void mouseMoved(MouseEvent e){
 			
 		}
-//		public void mouseEntered(MouseEvent e){
-//			startP = e.getPoint();
-//			endP = e.getPoint();
-//		}
 	}
 }
 

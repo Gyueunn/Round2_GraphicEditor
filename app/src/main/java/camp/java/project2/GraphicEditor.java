@@ -32,16 +32,13 @@ public class GraphicEditor extends JFrame {
 		frame.setLocationRelativeTo(null);
 		new MenuBar();
 		new ButtonPanel();
-		//myPanel.setBackground(Color.MAGENTA);
-		myPanel.setBounds(0, 0, 1280, 90);
-		myPanel.setOpaque(true);
-		myPanel.setLayout(new GridLayout(1,0));
 		new UsingTool();
+		myPanel.setLayout(new GridLayout(1, 0));
 		frame.add(myPanel);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
+	
 	public static void main(String[] args) {
 		new GraphicEditor();
 		//마우스를 클릭했을 때 속성에 따라 실행될 수 있는 클래스 호출

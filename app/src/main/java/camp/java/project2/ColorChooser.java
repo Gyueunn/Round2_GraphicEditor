@@ -18,11 +18,9 @@ public class ColorChooser extends JFrame implements ChangeListener{
    
    public ColorChooser(){
       setTitle("ColorChooser");
-      setLocation(200, 150);
+      setLocation(370, 320);
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      
       colorChooser.getSelectionModel().addChangeListener(this);
-      
       add(colorChooser);
       pack();
       setVisible(true);

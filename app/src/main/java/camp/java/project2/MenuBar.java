@@ -15,6 +15,7 @@ public class MenuBar extends JMenuBar {
 	public MenuBar() {
 		chageTool();
 		changeBackground();
+		saveFile();
 		GraphicEditor.frame.setJMenuBar(this);
 	}
 	
@@ -48,5 +49,16 @@ public class MenuBar extends JMenuBar {
 		white.addActionListener(b.listener);
 		black.addActionListener(b.listener);
 		green.addActionListener(b.listener);
+	}
+	void saveFile() {
+		FileChange f = new FileChange();
+		JMenu propertyMenu = new JMenu("File");
+		JMenuItem save = new JMenuItem("Save");
+		JMenuItem load = new JMenuItem("Load");
+		propertyMenu.add(save);
+		propertyMenu.add(load);
+		this.add(propertyMenu);
+		save.addActionListener(f.listener);
+		load.addActionListener(f.listener);
 	}
 }
