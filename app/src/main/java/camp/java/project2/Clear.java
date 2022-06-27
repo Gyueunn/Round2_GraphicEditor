@@ -23,7 +23,7 @@ public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 �
    	         	}
         		FileChange.isLoaded = false;
         		UsingTool.shapeArrayList.clear();
-        		GraphicEditor.frame.repaint();
+        		UsingTool.panel.repaint();
         		UsingTool.redoStack.clear(); //stack을 모두 초기화 
         	}
         	
@@ -34,7 +34,7 @@ public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 �
 			}
         	
         	else if(input.equals("<=")) {
-        		if(allClearList.size() != 0) {
+        		if(allClearList.size() > 0) {
         			for(int i=0; i<allClearList.size(); i++) {
         				UsingTool.shapeArrayList.add(allClearList.get(i));
        	         	}
@@ -46,7 +46,7 @@ public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 �
             		UsingTool.shapeArrayList.remove(UsingTool.shapeArrayList.size()-1);
             		UsingTool.startP = null;
             		UsingTool.startP = null;
-            		GraphicEditor.frame.repaint();
+            		UsingTool.panel.repaint();
         		}
 			}
         	
@@ -54,7 +54,7 @@ public class Clear { // 지우기 올클리어(전체지우기), 오브젝트 �
         		if(!UsingTool.redoStack.empty()) {
         			UsingTool.shapeArrayList.add(UsingTool.redoStack.pop());
         			UsingTool.MyShape undo = UsingTool.shapeArrayList.get(UsingTool.shapeArrayList.size()-1);
-            		GraphicEditor.frame.repaint();
+        			UsingTool.panel.repaint();
         		}
 			}
         }

@@ -9,19 +9,16 @@ public class BackgroundChange {
         public void actionPerformed(ActionEvent e) {
         	String input = e.getActionCommand();
 	       	if(input.equals("White")) {
-	       		System.out.println("Background" + GraphicEditor.Background);
 	       		GraphicEditor.Background = Color.WHITE;
 	       		UsingTool.panel.setBackground(GraphicEditor.Background);
 	       		UsingTool.panel.repaint();
 	       	}
 	       	else if(input.equals("Black")) {
-	       		System.out.println("Background" + GraphicEditor.Background);
 	       		GraphicEditor.Background = Color.BLACK;
 	       		UsingTool.panel.setBackground(GraphicEditor.Background);
 	       		UsingTool.panel.repaint();
 	       	}
         	else if(input.equals("Green")) {
-        		System.out.println("Background" + GraphicEditor.Background);
         		GraphicEditor.Background = Color.GREEN;
         		UsingTool.panel.setBackground(GraphicEditor.Background);
         		UsingTool.panel.repaint();

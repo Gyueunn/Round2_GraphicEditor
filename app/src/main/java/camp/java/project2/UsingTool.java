@@ -87,7 +87,8 @@ public class UsingTool extends JPanel {
 				}
 				else if(cshape.shapeTool.equals("Eraser")) {
 					for(int i =0; i<cshape.shapePoint.size()-1; i++) {
-						g.setColor(Color.WHITE);
+						g.setColor(GraphicEditor.Background);
+						//GraphicEditor.Background = GraphicEditor.color;
 						g.drawLine(cshape.shapePoint.get(i).x, cshape.shapePoint.get(i).y, cshape.shapePoint.get(i+1).x, cshape.shapePoint.get(i+1).y);
 					}
 				}
@@ -138,7 +139,7 @@ public class UsingTool extends JPanel {
 				MyShape currentShape = new MyShape(GraphicEditor.tool, GraphicEditor.color, GraphicEditor.stroke, startP, endP);
 				shapeArrayList.add(currentShape);
 			}
-			redoStack.clear();//화면이 눌리면 이전의 redo를 삭제 
+			redoStack.clear();
 			Clear.allClearList.clear();
 			panel.repaint(); 
 		}
